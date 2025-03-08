@@ -50,7 +50,9 @@ void printMatrix(int **matrix, int n) {
 }
 
 int main() {
-    int n = 3;
+    int n;
+    cout << "Ingrese la dimensión de la matriz:\n> ";
+    cin >> n;
     int **matrix = createMatrix(n);
     if (matrix) {
         printMatrix(matrix, n);
