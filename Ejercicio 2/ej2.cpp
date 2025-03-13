@@ -29,10 +29,10 @@ void logMessage(string message, SEVERITY severityLevel) {
 // b)
 
 // ii.
-void logMessage(string errorMesagge, string file, int line) {
+void logMessage(string errorMesagge, string fileName, int line) {
     ofstream outFile("console.txt", ios::app);
     if (outFile.is_open()) {
-        outFile << file << ":" << to_string(line) << " '" << errorMesagge << "'" << endl;
+        outFile << fileName << ":" << to_string(line) << " '" << errorMesagge << "'" << endl;
         outFile.close();
     } else cerr << "Error" << endl;
     return;
