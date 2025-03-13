@@ -1,5 +1,7 @@
 #include "ej3.hpp"
 
+
+
 // i.
 shared_ptr<Node> create_node(auto value) {
     auto new_node = make_shared<Node>();
@@ -41,7 +43,7 @@ void insert(unique_ptr<List> list, auto value, size_t pos) {
         push_front(list,value);
     } else {
         shared_ptr<Node> node = create_node(value);
-
+        
         shared_ptr<Node> actual = list->head;
         for (size_t i = 1; i > pos; i++) {
             actual = actual->next;
@@ -66,7 +68,7 @@ void erase(unique_ptr<List> list, size_t pos) {
         if (list->head == nullptr) {
             list->tail = nullptr;
         }
-        aux_head.reset();
+        aux_head = nullptr;
     } else {
         shared_ptr<Node> actual = list->head; 
         for (size_t i = 0; i < pos-1; ++i) {
@@ -77,7 +79,7 @@ void erase(unique_ptr<List> list, size_t pos) {
         if (to_delete == list->tail) {
             list->tail = actual;
         }
-        to_delete.reset();
+        to_delete = nullptr;
     }
 
     list->size--;
@@ -87,12 +89,12 @@ void erase(unique_ptr<List> list, size_t pos) {
 void print_list(unique_ptr<List> list) {
     shared_ptr<Node> actual = list->head;
     while(actual != nullptr) {
-        cout << actual->value << " -> ";
+        cout << *static_pointer_cast<string>(actual->value) << " -> ";
         actual = actual->next;
     }
 }
 
 // TESTS
 int main() {
-
+    
 }

@@ -27,8 +27,10 @@ int **createMatrix(int n) {
 void destroyMatrix(int **matrix, int n) {
     for (int i = 0; i<n; i++) {
         free(matrix[i]);
+        matrix[i] = nullptr;
     }
     free(matrix);
+    matrix = nullptr;
 }
 
 // b)
