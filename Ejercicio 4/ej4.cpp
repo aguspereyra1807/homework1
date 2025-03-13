@@ -29,11 +29,7 @@ int main() {
 
     auto startTime = chrono::high_resolution_clock::now();
     
-    bool equal = str_compare_runtime(a,b);
-    // string estado;
-    // if (equal) estado = "iguales";
-    // else estado = "diferentes";
-    // cout << "Los strings '" << a << "' y '" << b << "' son " << estado << endl;
+    str_compare_runtime(a,b);
 
     auto endTime = chrono::high_resolution_clock::now();
     auto elapsedTime = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
@@ -44,12 +40,7 @@ int main() {
 
     auto startTime2 = chrono::high_resolution_clock::now();
     
-    bool equal2 = str_compare_runtime(c,d);
-
-    // string estado2;
-    // if (equal2) estado2 = "iguales";
-    // else estado2 = "diferentes";
-    // cout << "Los strings '" << c << "' y '" << d << "' son " << estado2 << endl;
+    str_compare_runtime(c,d);
     
     auto endTime2 = chrono::high_resolution_clock::now();
     auto elapsedTime2 = chrono::duration_cast<chrono::nanoseconds>(endTime2 - startTime2);
@@ -61,12 +52,7 @@ int main() {
     
     auto startTime3 = chrono::high_resolution_clock::now();
     
-    constexpr bool equal3 = str_compare_compiletime(e,f);
-
-    // string estado3;
-    // if (equal3) estado3 = "iguales";
-    // else estado3 = "diferentes";
-    // cout << "Los strings '" << e << "' y '" << f << "' son " << estado3 << endl;
+    str_compare_compiletime(e,f);
     
     auto endTime3 = chrono::high_resolution_clock::now();
     auto elapsedTime3 = chrono::duration_cast<chrono::nanoseconds>(endTime3 - startTime3);
