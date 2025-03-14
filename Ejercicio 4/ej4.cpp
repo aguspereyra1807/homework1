@@ -8,7 +8,7 @@ bool str_compare_runtime(string a,string b) {
     return state;
 }
 
-bool str_compare_runtime(const char *a, const char *b) {
+bool str_compare_runtime(char *a, char *b) {
     bool state = true;
     if (*a != *b) return false;
     if (*a == '\0' || *b == '\0') return state;
@@ -36,7 +36,7 @@ int main() {
     cout << "str_compare_runtime() (con string) tomó " << elapsedTime.count() << " nanosegundos" << std::endl;
 
     // =============================================================================================
-    const char c[] = "ejemplo", d[] = "ejemplo";
+    char c[] = "ejemplo", d[] = "ejemplo";
 
     auto startTime2 = chrono::high_resolution_clock::now();
     
@@ -45,7 +45,7 @@ int main() {
     auto endTime2 = chrono::high_resolution_clock::now();
     auto elapsedTime2 = chrono::duration_cast<chrono::nanoseconds>(endTime2 - startTime2);
 
-    cout << "str_compare_runtime() (con const char*) tomó " << elapsedTime2.count() << " nanosegundos" << std::endl;
+    cout << "str_compare_runtime() (con char*) tomó " << elapsedTime2.count() << " nanosegundos" << std::endl;
 
     // =============================================================================================
     const char e[] = "ejemplo", f[] = "ejemplo";
@@ -61,11 +61,12 @@ int main() {
 }
 
 /* CONCLUSIÓN:
-    Podemos ver que la comparación de strings de varaible <std::string> es mucho mas lento que a la hora de comparar
-variables 'const *char'. Supongo que esto se debe a que <std::string> es una clase, y durante la comparación
-uso métodos de esta clase. Mientras que al usar punteros a char, se maneja directamente con cada char y es más facil
-comparar (de esta manera recursiva).
-Y a su vez, la función definida como constexpr, la cual compara los strings en tiempo de compilación,
-acorta el tiempo medido por la libreria <chronos> porque como el tiempo medido es el tiempo de ejecución,
-esta función ya tiene cosas resueltas de antes que no tienen q ser ejecutadas durante el tiempo que es medido.
+    Podemos ver que la comparación de strings de varaible <std::string> es muchísimo mas lento que a la hora de comparar
+variables 'char*' (una diferencia de 2000 nanosegundos en promedio). Supongo que esto se debe a que <std::string> es una clase, 
+y durante la comparaciónuso métodos de esta clase. Mientras que al usar punteros a char, se maneja directamente con cada char y 
+es más facil comparar (de esta manera recursiva).
+Y a su vez, la función definida como constexpr, compara los strings de tipo 'const char*' en tiempo de compilación,
+la cual en ocasiones acorta o iguala el tiempo medido por la libreria <chronos>. Supongo que esto se debe a que como el tiempo 
+medido es el tiempo de ejecución, y esta función ya tiene cosas resueltas de antes que no tienen q ser ejecutadas durante el tiempo 
+en el que es medido.
 */

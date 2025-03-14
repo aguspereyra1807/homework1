@@ -1,9 +1,0 @@
-[DEBUG] debug message example
-[INFO] info message example
-[WARNING] warning message example
-[ERROR] error message example
-[CRITICAL] critical message example
-ej2.cpp:45 'SintaxError'
-[SECURITY] Acceso correcto de 'apereryra@udesa.edu.ar'
-[SECURITY] Acceso incorrecto de 'mscaramal@udesa.edu.ar'
-[ERROR] Error 1
