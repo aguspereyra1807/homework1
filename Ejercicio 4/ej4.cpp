@@ -10,6 +10,7 @@ bool str_compare_runtime(string a,string b) {
 
 bool str_compare_runtime(char *a, char *b) {
     bool state = true;
+    if (strlen(a) != strlen(b)) return false; 
     if (*a != *b) return false;
     if (*a == '\0' || *b == '\0') return state;
     state &= str_compare_runtime(a+1, b+1); // Recorre caracter a caracter hasta llegar a un '\0' o hasta que sean diferentes
@@ -18,6 +19,7 @@ bool str_compare_runtime(char *a, char *b) {
 
 constexpr bool str_compare_compiletime(const char *a, const char *b) { // Uso constexpr porque por como estoy compilando no me toma consteval
     bool state = true;
+    if (strlen(a) != strlen(b)) return false; 
     if (*a != *b) return false;
     if (*a == '\0' || *b == '\0') return state;
     state &= str_compare_compiletime(a+1, b+1); 

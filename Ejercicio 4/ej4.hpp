@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <chrono>
+#include <cstring>
 using namespace std;
 
 // Compara 2 variables <std::string> caracter a caracter recursivamente.
