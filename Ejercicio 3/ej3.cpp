@@ -83,7 +83,7 @@ void erase(unique_ptr<List> &list, size_t pos) {
         shared_ptr<Node> to_delete = actual->next;
         
         actual->next = actual->next->next;
-        to_delete = nullptr;
+        to_delete.reset();
     }
 
     list->size--;

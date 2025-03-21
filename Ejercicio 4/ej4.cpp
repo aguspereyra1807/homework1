@@ -28,29 +28,26 @@ constexpr bool str_compare_compiletime(const char *a, const char *b) { // Uso co
 
 int main() {
     string a = "ejemplo", b = "ejemplo";
+    char c[] = "ejemplo", d[] = "ejemplo";
+    const char e[] = "ejemplo", f[] = "ejemplo";
 
-    auto startTime = chrono::high_resolution_clock::now();
+    auto startTime1 = chrono::high_resolution_clock::now();
     
     str_compare_runtime(a,b);
 
-    auto endTime = chrono::high_resolution_clock::now();
-    auto elapsedTime = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
-    cout << "str_compare_runtime() (con string) tomó " << elapsedTime.count() << " nanosegundos" << std::endl;
-
+    auto endTime1 = chrono::high_resolution_clock::now();
+    auto elapsedTime1 = chrono::duration_cast<chrono::nanoseconds>(endTime1 - startTime1);
+    
     // =============================================================================================
-    char c[] = "ejemplo", d[] = "ejemplo";
-
+    
     auto startTime2 = chrono::high_resolution_clock::now();
     
     str_compare_runtime(c,d);
     
     auto endTime2 = chrono::high_resolution_clock::now();
     auto elapsedTime2 = chrono::duration_cast<chrono::nanoseconds>(endTime2 - startTime2);
-
-    cout << "str_compare_runtime() (con char*) tomó " << elapsedTime2.count() << " nanosegundos" << std::endl;
-
+    
     // =============================================================================================
-    const char e[] = "ejemplo", f[] = "ejemplo";
     
     auto startTime3 = chrono::high_resolution_clock::now();
     
@@ -58,12 +55,14 @@ int main() {
     
     auto endTime3 = chrono::high_resolution_clock::now();
     auto elapsedTime3 = chrono::duration_cast<chrono::nanoseconds>(endTime3 - startTime3);
-
+    
+    cout << "str_compare_runtime() (con string) tomó " << elapsedTime1.count() << " nanosegundos" << std::endl;
+    cout << "str_compare_runtime() (con char*) tomó " << elapsedTime2.count() << " nanosegundos" << std::endl;
     cout << "str_compare_compiletime() tomó " << elapsedTime3.count() << " nanosegundos" << std::endl;
 }
 
 /* CONCLUSIÓN:
-    Podemos ver que la comparación de strings de varaible <std::string> es muchísimo mas lento que a la hora de comparar
+Podemos ver que la comparación de strings de varaible <std::string> es muchísimo mas lento que a la hora de comparar
 variables 'char*' (una diferencia de 2000 nanosegundos en promedio). Supongo que esto se debe a que <std::string> es una clase, 
 y durante la comparaciónuso métodos de esta clase. Mientras que al usar punteros a char, se maneja directamente con cada char y 
 es más facil comparar (de esta manera recursiva).
